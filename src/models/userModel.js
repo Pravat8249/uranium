@@ -1,16 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const bookSchema = new mongoose.Schema({
-    bookName: String,
+let BookUserSchema = new mongoose.Schema({
+    bookName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    price: {
+        indianPrice: String,
+        unitedStatePrice: String
+    },
+    year: {
+        type: Number,
+        default: 2021
+    },
+    tags: ["biography", "horror", "nationalism", "Mystery", "Historical Fiction", "Romance","freedom fighters", "programming"],
     authorName: String,
-    category: String,
-    year: Number,
-
+    totalPage: Number,
+    stcokAvailable: Boolean
 }, { timestamps: true });
 
-module.exports = mongoose.model('Book', bookSchema) //users
-
-
-
-// String, Number
-// Boolean, Object/json, array
+let bookModelSchema = mongoose.model("guptaModel", BookUserSchema);
+module.exports = bookModelSchema;
